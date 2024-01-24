@@ -4,14 +4,20 @@ import { AddCategory, GifGrid } from "./components";
 
 export const GifExpertApp = () => {
   
+  // TODO: se dejo de usar el categories para prevenir la acumulacion de gifs,
+  // se planea usar para manejar un historia de busqueda
   const [ categories, setCategories] = useState(['One Punch']);
+
+  const [ unitCategory, setUnitCategory ] = useState( categories[0] )
 
   const onAddCategory = ( newCategory ) => {
 
-      const lowerCaseCategories = categories.map( category => category.toLocaleLowerCase());  
-      if( lowerCaseCategories.includes(newCategory.toLocaleLowerCase()) ) return;
+      // const lowerCaseCategories = categories.map( category => category.toLocaleLowerCase());  
+      // if( lowerCaseCategories.includes(newCategory.toLocaleLowerCase()) ) return;
 
-      setCategories([newCategory, ...categories])
+      if(newCategory.toLocaleLowerCase() === unitCategory.toLocaleLowerCase()) return;
+
+      setUnitCategory(newCategory);
   }
 
   return (
@@ -26,11 +32,9 @@ export const GifExpertApp = () => {
         />
 
         
-          { categories.map( category => 
-             (
-                <GifGrid key={category} category={ category }/>
-             )
-           ) }
+       
+                <GifGrid key={unitCategory} category={ unitCategory }/>
+         
         
     </>
   )

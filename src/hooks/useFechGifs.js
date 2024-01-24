@@ -3,7 +3,6 @@ import { getGifs } from "../helpers/get-gifs";
 
 
 export const useFechGif = ( category ) => {
-    
     const [ images, setImages ] = useState([]);
     const [ isLoading, setIsLoading ] = useState( true );
 
